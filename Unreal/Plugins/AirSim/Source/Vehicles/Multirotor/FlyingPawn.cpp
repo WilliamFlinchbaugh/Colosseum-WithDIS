@@ -1,4 +1,5 @@
 #include "FlyingPawn.h"
+#include "DISSendComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "AirBlueprintLib.h"
 #include "common/CommonStructs.hpp"
@@ -8,6 +9,10 @@ AFlyingPawn::AFlyingPawn()
 {
     init_id_ = pawn_events_.getActuatorSignal().connect_member(this, &AFlyingPawn::initializeRotors);
     pawn_events_.getActuatorSignal().connect_member(this, &AFlyingPawn::setRotorSpeed);
+
+    dis_send_ = CreateDefaultSubobject<UDISSendComponent>(TEXT("DISSend"));
+    dis_send_->EntityStatePDUSendingMode = EEntityStateSendingMode::EntityStatePDU;
+    dis_send_->DISHeartbeatSeconds = 0.25f;
 }
 
 void AFlyingPawn::BeginPlay()

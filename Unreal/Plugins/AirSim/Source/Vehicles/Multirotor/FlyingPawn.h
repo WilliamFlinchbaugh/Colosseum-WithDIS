@@ -3,11 +3,11 @@
 #include "GameFramework/RotatingMovementComponent.h"
 
 #include <memory>
+#include "DISSendComponent.h"
 #include "PIPCamera.h"
 #include "common/common_utils/Signal.hpp"
 #include "common/common_utils/UniqueValueMap.hpp"
 #include "MultirotorPawnEvents.h"
-
 #include "FlyingPawn.generated.h"
 
 UCLASS()
@@ -52,6 +52,9 @@ private: //variables
 
     UPROPERTY()
     TArray<URotatingMovementComponent*> rotating_movements_;
+
+    UPROPERTY(VisibleAnywhere)
+    class UDISSendComponent* dis_send_;
 
     MultirotorPawnEvents pawn_events_;
     int init_id_;
