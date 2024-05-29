@@ -87,7 +87,7 @@ bool UAirBlueprintLib::loadLevel(UObject* context, const FString& level_name)
         FString LongPackageName;
         success = FPackageName::SearchForPackageOnDisk(level_name, &LongPackageName);
         if (success) {
-            context->GetWorld()->SetNewWorldOrigin(FIntVector(0, 0, 0));
+            // context->GetWorld()->SetNewWorldOrigin(FIntVector(0, 0, 0));
             UGameplayStatics::OpenLevel(context->GetWorld(), FName(*LongPackageName), true);
         }
     }
