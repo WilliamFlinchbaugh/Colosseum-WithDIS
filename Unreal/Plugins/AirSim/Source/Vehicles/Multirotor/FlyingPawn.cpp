@@ -11,8 +11,22 @@ AFlyingPawn::AFlyingPawn()
     pawn_events_.getActuatorSignal().connect_member(this, &AFlyingPawn::setRotorSpeed);
 
     dis_send_ = CreateDefaultSubobject<UDISSendComponent>(TEXT("DISSend"));
+
+    FEntityType entity_type_;
+    entity_type_.EntityKind = 1;
+    entity_type_.Domain = 2;
+    entity_type_.Country = 225;
+    entity_type_.Category = 50;
+    entity_type_.Subcategory = 3;
+    entity_type_.Specific = 0;
+    entity_type_.Extra = 0;
+
+    dis_send_->EntityType = entity_type_;
+    dis_send_->EntityID = 1;
+    dis_send_->EntityForceID = EForceID::Friendly;
+    dis_send_->EntityMarking = "Drone";
     dis_send_->EntityStatePDUSendingMode = EEntityStateSendingMode::EntityStatePDU;
-    dis_send_->DISHeartbeatSeconds = 0.25f;
+    dis_send_->DISHeartbeatSeconds = 0.05f;
 }
 
 void AFlyingPawn::BeginPlay()
